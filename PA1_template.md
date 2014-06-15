@@ -40,8 +40,8 @@ A histogram of the total number of steps is required here. Firstly, a summary of
 ```r
 library(plyr)
 byday.act <- ddply(activity, .(date), summarise, total.steps = sum(steps, na.rm = TRUE))
-barplot(byday.act$total.steps, main = "Number of total steps per day", xlab = "Date", 
-    ylab = "Steps")
+hist(byday.act$total.steps, main = "Histogram of total steps per day", xlab = "Steps", 
+    ylab = "Days of occurences")
 ```
 
 ![plot of chunk unnamed-chunk-3](figure/unnamed-chunk-3.png) 
@@ -127,8 +127,8 @@ Now we repeat steps in the second section to produce the histogram, mean, and me
 ```r
 byday.act.noNA <- ddply(act.noNA, .(date), summarise, total.steps = sum(steps, 
     na.rm = TRUE))
-barplot(byday.act.noNA$total.steps, main = "Number of total steps per day", 
-    sub = "(missing steps values imputed)", xlab = "Date", ylab = "Steps")
+hist(byday.act.noNA$total.steps, main = "Histogram of total steps per day", 
+    sub = "(missing steps values imputed)", xlab = "Steps", ylab = "Days of occurences")
 ```
 
 ![plot of chunk unnamed-chunk-9](figure/unnamed-chunk-9.png) 
@@ -150,7 +150,7 @@ print(paste0("Median with imputed values: ", median(byday.act.noNA$total.steps))
 ```
 
 
-As can be seen, there are fewer gaps now in the histogram, and both the mean and median values have increased.
+As can be seen, the histogram changed shape, where the bin with the fewest steps now become smaller, and redistributed to other bins which become taller (3rd-5th bins). Both the mean and median values have increased.
 
 ## Are there differences in activity patterns between weekdays and weekends?
 

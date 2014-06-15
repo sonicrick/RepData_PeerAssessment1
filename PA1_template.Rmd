@@ -34,8 +34,8 @@ A histogram of the total number of steps is required here. Firstly, a summary of
 library(plyr)
 byday.act <- ddply(activity, .(date), summarise,
                      total.steps=sum(steps, na.rm=TRUE))
-barplot(byday.act$total.steps, main="Number of total steps per day",
-        xlab="Date", ylab="Steps")
+hist(byday.act$total.steps, main="Histogram of total steps per day",
+        xlab="Steps", ylab="Days of occurences")
 ```
 
 The mean and median total number of steps can similarly be calculated from "byday.act"" above.
@@ -86,14 +86,14 @@ Now we repeat steps in the second section to produce the histogram, mean, and me
 ```{r }
 byday.act.noNA <- ddply(act.noNA, .(date), summarise,
                      total.steps=sum(steps, na.rm=TRUE))
-barplot(byday.act.noNA$total.steps, main="Number of total steps per day",
+hist(byday.act.noNA$total.steps, main="Histogram of total steps per day",
         sub="(missing steps values imputed)",
-        xlab="Date", ylab="Steps")
+        xlab="Steps", ylab="Days of occurences")
 print(paste0("Mean with imputed values: ", mean(byday.act.noNA$total.steps)))
 print(paste0("Median with imputed values: ", median(byday.act.noNA$total.steps)))
 ```
 
-As can be seen, there are fewer gaps now in the histogram, and both the mean and median values have increased.
+As can be seen, the histogram changed shape, where the bin with the fewest steps now become smaller, and redistributed to other bins which become taller (3rd-5th bins). Both the mean and median values have increased.
 
 ## Are there differences in activity patterns between weekdays and weekends?
 
